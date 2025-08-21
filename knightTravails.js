@@ -1,21 +1,14 @@
 function knightMoves(startPosition, endPosition) {
   // a queue to store the positions of the knight
   let queue = [];
-  // an array to check if a position has been visited or not
-  let visited = [
-    [false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false],
-  ];
+  // push the end position into the queue
+  queue.push(startPosition);
+
   while (queue.length > 0) {
-    // create graph of chessboard squares as [x, y] implicitly from start postition
-    let i = startPosition[0];
-    let j = startPosition[1];
+    let currentPosition = queue.shift();
+    // create graph of chessboard squares as [x, y] implicitly from start currentPostition
+    let i = currentPosition[0];
+    let j = currentPosition[1];
     const neighbours = [
       [i + 1, j + 2],
       [i + 1, j - 2],
@@ -30,6 +23,13 @@ function knightMoves(startPosition, endPosition) {
     // remove any position where i or j is either greater than 7 or less than 0
     neighbours.forEach((item, index) => {
       if (item[0] < 0 || item[0] > 7 || item[1] < 0 || item[1] > 7) {
+        neighbours.splice(index, 1);
+      }
+    });
+
+    // remove any positions that have already been visited
+    neighbours.forEach((item, index) => {
+      if (checkVisited[item[0]][item[1]] === true) {
         neighbours.splice(index, 1);
       }
     });
