@@ -82,6 +82,8 @@ function knightMoves(startPosition, endPosition) {
       [null, null],
     ],
   ];
+  // set the distance of the end position to 0
+  bfsArray[endPosition[0]][endPosition[1]][0] = 0;
   // a queue to store the positions of the knight
   let queue = [];
   // push the end position into the queue
@@ -115,6 +117,12 @@ function knightMoves(startPosition, endPosition) {
       if (bfsArray[item[0]][item[1]][0] !== null) {
         neighbours.splice(index, 1);
       }
+    });
+
+    // set the distance and predecessor for every neighbour
+    neighbours.forEach((item) => {
+      bfsArray[item[0]][item[1]][0] = 1;
+      bfsArray[item[0]][item[1]][1] = currentPosition;
     });
   }
 
