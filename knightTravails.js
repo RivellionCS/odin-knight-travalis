@@ -1,8 +1,91 @@
 function knightMoves(startPosition, endPosition) {
+  // an array to check distance and the predecessor
+  let bfsArray = [
+    [
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+    ],
+    [
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+    ],
+    [
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+    ],
+    [
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+    ],
+    [
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+    ],
+    [
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+    ],
+    [
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+    ],
+    [
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+      [null, null],
+    ],
+  ];
   // a queue to store the positions of the knight
   let queue = [];
   // push the end position into the queue
-  queue.push(startPosition);
+  queue.push(endPosition);
 
   while (queue.length > 0) {
     let currentPosition = queue.shift();
@@ -29,7 +112,7 @@ function knightMoves(startPosition, endPosition) {
 
     // remove any positions that have already been visited
     neighbours.forEach((item, index) => {
-      if (checkVisited[item[0]][item[1]] === true) {
+      if (bfsArray[item[0]][item[1]][0] !== null) {
         neighbours.splice(index, 1);
       }
     });
